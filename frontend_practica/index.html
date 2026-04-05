@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FrED Factory - Home</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <section class="home-screen">
+    <div class="overlay"></div>
+
+    <header class="top-bar">
+      <div class="logo-area">
+        <img src="images/tec.webp" alt="Tec logo" class="tec-logo">
+        <img src="images/mit.png" alt="MIT logo" class="mit-logo">
+      </div>
+
+      <nav class="nav-menu">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="services.html">Services</a>
+        <a href="profile.html">Profile</a>
+      </nav>
+    </header>
+
+    <main class="main-content">
+      <h1 class="main-title">
+        <span class="fred-box">FrED</span> FACTORY
+      </h1>
+
+      <div class="news-box">
+        <h3>News</h3>
+        <p id="newsText">Something interesting happened in the FrED Factory project...</p>
+      </div>
+
+      <div class="button-row">
+        <button class="btn btn-orange" onclick="previousNews()">
+          <span class="circle-icon">&#10094;</span>
+          PREVIOUS
+        </button>
+
+        <button class="btn btn-outline" onclick="nextNews()">
+          <span class="circle-icon">&#10095;</span>
+          NEXT
+        </button>
+      </div>
+    </main>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
