@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
-
+dsvlksndvlksn defdvklsdñk{vnd{lsk soyr rodfri y estoyu modificando el backend}}
 app = Flask(__name__)
 app.secret_key = "clave_secreta"
 
