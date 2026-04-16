@@ -1,33 +1,19 @@
-const newsList = [
-  "Something interesting happened in the FrED Factory project...",
-  "New sections are being integrated into the official FrED page.",
-  "Users will be able to view recent papers and workshop schedules.",
-  "A virtual factory simulator and inventory tools are being added."
-];
-
-let currentNews = 0;
-
-function showNews() {
-  const newsText = document.getElementById("newsText");
-  if (newsText) {
-    newsText.textContent = newsList[currentNews];
-  }
+function goto(page) {
+window.location.href = page;
 }
 
-function nextNews() {
-  currentNews++;
-  if (currentNews >= newsList.length) {
-    currentNews = 0;
-  }
-  showNews();
-}
+const home_btn = document.getElementById('home_btn');
+const services_btn = document.getElementById('services_btn');
+const calendar_btn = document.getElementById('calendar_btn');
+const account_btn = document.getElementById('account_btn');
+const login_btn = document.getElementById('login_btn');
+const logo1_btn = document.getElementById('logo_btn');
+const logo2_btn = document.getElementById('name_btn');
 
-function previousNews() {
-  currentNews--;
-  if (currentNews < 0) {
-    currentNews = newsList.length - 1;
-  }
-  showNews();
-}
-
-showNews();
+home_btn.addEventListener('click', () => goto('home.html'));
+services_btn.addEventListener('click', () => goto('services.html'));
+calendar_btn.addEventListener('click', () => goto('calendar.html'));
+account_btn.addEventListener('click', () => goto('account.html'));
+login_btn.addEventListener('click', () => goto('index.html'));
+logo1_btn.addEventListener('click', () => goto('home.html'));
+logo2_btn.addEventListener('click', () => goto('home.html'));

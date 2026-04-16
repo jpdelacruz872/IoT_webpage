@@ -1,56 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FrED Factory - Services</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="shape shape-circle-1"></div>
+    <div class="shape shape-circle-2"></div>
+    <div class="shape shape-circle-3"></div>
+    <div class="shape shape-rectangle-1"></div>
 
-  <section class="secondary-screen services-bg">
-    <header class="top-bar secondary-topbar">
-      <div class="logo-area">
-        <img src="images/tec.webp" alt="Tec logo" class="small-logo tec-small">
-        <img src="images/mit.png" alt="MIT logo" class="small-logo mit-small">
-      </div>
-
-      <nav class="nav-menu">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html" class="active">Services</a>
-        <a href="profile.html">Profile</a>
-      </nav>
-    </header>
-
-    <div class="orange-line"></div>
-
-    <main class="services-page">
-      <div class="services-panel">
-
-        <a href="inventory.html" class="service-card">
-          <div class="service-icon">📦</div>
-          <div class="service-label">Inventory</div>
-        </a>
-
-        <a href="papers.html" class="service-card">
-          <div class="service-icon">📰</div>
-          <div class="service-label">Recent Papers</div>
-        </a>
-
-        <a href="calendar.html" class="service-card">
-          <div class="service-icon">📅</div>
-          <div class="service-label">Workshop Calendar</div>
-        </a>
-
-        <a href="simulator.html" class="service-card">
-          <div class="service-icon">🏭</div>
-          <div class="service-label">Virtual Factory Simulator</div>
-        </a>
-
-      </div>
-    </main>
-  </section>
-
+    <div class="menu">
+        <div class="logo">
+            <button id="logo_btn">
+                <img src="fred_logo.png" alt="FrED Factory logo">
+            </button>
+            <button id="name_btn">FrED Factory</button>
+        </div>
+        <nav class="menu_buttons">
+            <button id="home_btn">HOME</button>
+            <button id="services_btn">SERVICES</button>
+            <button id="calendar_btn">CALENDAR</button>
+            <button id="account_btn">ACCOUNT</button>
+            <button id="login_btn">LOGIN</button>
+            <img src="TEC_logo.png" alt="Tec de Monterrey logo">
+        </nav>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
