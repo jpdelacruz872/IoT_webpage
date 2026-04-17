@@ -71,7 +71,7 @@
     position: fixed;
     left: 0;
     top: 0%;
-    z-index: 10;
+    z-index: 100;
     display: flex;
     align-items: center;
 }
@@ -137,19 +137,43 @@
 }
 
 .home_container {
-    position: fixed;
+    position: relative;
     display: flex;
     background: none;
-    height: 80vh;
+    min-height: calc(100vh - 15%);
     width: 80%;
     gap:40px;
     z-index: 10;
-    margin: 0 auto;
-    top: 25vh;
     flex-direction: column;
-    margin-top: -6%;
+    margin-top: 4.7%;
     margin-left: 10%;
+    overflow-y: auto;
+    ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-bottom: 5%;
+}
 
+.home_container::-webkit-scrollbar {
+    display: none;
+}
+
+.home_container section {
+    height: 10%;
+    font-size: 130%;
+    font-family: 'Lausanne', sans-serif;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-top: -2%;
+}
+
+#welcome_header {
+    width: 40%;
+    margin-top: 5%;
+    font-size: 7.7vh;
+    color: var(--blue-1);
+    font-weight: bold;
+    font-family: 'Lausanne', sans-serif;
+    margin-bottom: 1.5%;
 }
 
 #login_container {
@@ -167,13 +191,15 @@
     flex-grow: 1;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     padding-left: 5%;
-    margin-top: -10%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    margin-top: -4.5rem;
 }
 
 #welcome_img {
-    height: 85%;
+    width: 22%;
+    object-fit: contain;
     margin-left: 5%;
-    margin-bottom: 5%;
 }
 
 #login header{
@@ -187,7 +213,7 @@
 #login input {
     display: flex;
     flex-direction: column;
-    width: 87%;
+    width: 100%;
     padding: 0.875rem;
     font-size: 1rem;
     font-family: 'Lausanne', sans-serif;
@@ -195,14 +221,15 @@
     border-radius: 0.5rem;
     box-shadow: 2.5px 3px 0 #00000086;
     outline: none;
-    transition: ease 0.25s;
+    transition: ease 0.3s, background-color 0.3s ease;
     color: var(--text-secondary);
+    box-sizing: border-box;
 }
 
-#login button{
+#login button:not(#sign_up_btn){
     margin-top: 10%;
-    width: 91%;
-    height: 10%;
+    width: 100%;
+    height: 3rem;
     background-color: var(--blue-2);
     border-radius: 10px;
     color: white;
@@ -213,26 +240,151 @@
     font-family: 'Lausanne', sans-serif;
 }
 
-#login button:hover{
+#login button:hover:not(#sign_up_btn){
     background-color: var(--blue-3);
     box-shadow: #666;
-    margin-top: 9.2%;
+    transform: translateY(-9.5%);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
     transition: 0.3s;
 }
 
-.home_container section {
-    height: 10%;
-    font-size: 130%;
+#sec_login{
+    display: flex;
+    align-items: center;
+    gap: 0.2%;
+    flex: center;
     font-family: 'Lausanne', sans-serif;
-    font-weight: 700;
-    color: var(--text-secondary);
-    margin-top: -2%;
+    font-size: 2vh;
 }
 
-#welcome_header {
-    width: 40%;
-    font-size: 7.7vh;
+#sec_login button{
+    background: none;
+    border: none;
+    font-family: 'Lausanne', sans-serif;
+    cursor: pointer;
+    font-size: 100%;
+    color: var(--blue-3);
+}
+
+#sec_login button:hover{
+    text-decoration: underline;
+}
+
+#sign_up_container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10%;
+}
+
+#identification{
+    display: flex;
+    gap: 5%;
+    margin-top: 5%;
+}
+
+#identification div{
+    width: 50%;
+}
+
+#sign_up {
+    border-radius: 20px;
+    background-color: rgba(245, 245, 245, 1);
+    flex-grow: 1;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2%;
+    margin-top: -5.5rem;
+}
+
+#sign_up h1{
     color: var(--blue-1);
+    font-family: 'Lausanne', sans-serif;
+    font-weight: 1000;
+    font-size: 3vh;
+    margin-top: 7%;
+}
+
+#sign_up input:not(.password_check){
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.875rem;
+    font-size: 1rem;
+    font-family: 'Lausanne', sans-serif;
+    border: 1.5px solid #00000086;
+    border-radius: 0.5rem;
+    box-shadow: 2.5px 3px 0 #00000086;
+    outline: none;
+    transition: ease 0.3s, background-color 0.3s ease;
+    color: var(--text-secondary);
+    box-sizing: border-box;
+}
+
+#sign_up button:not(#sec_login_btn){
+    margin-top: 4rem;
+    width: 100%;
+    height: 3.5rem;
+    background-color: var(--blue-2);
+    border-radius: 10px;
+    color: white;
     font-weight: bold;
+    font-size: 100%;
+    cursor: pointer;
+    border: none;
     font-family: 'Lausanne', sans-serif;
 }
+
+#sign_up button:hover:not(#sec_login_btn){
+    background-color: var(--blue-3);
+    transform: translateY(-9.5%);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+#sec_sign_up{
+    display: flex;
+    align-items: center;
+    gap: 0.2%;
+    flex: center;
+    font-family: 'Lausanne', sans-serif;
+    font-size: 2vh;
+}
+
+#sec_sign_up button{
+    background: none;
+    border: none;
+    font-family: 'Lausanne', sans-serif;
+    cursor: pointer;
+    font-size: 100%;
+    color: var(--blue-3);
+}
+
+#sec_sign_up button:hover{
+    text-decoration: underline;
+}
+
+.wrap_password{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2%;
+}
+
+.wrap_password img{
+    height: 5vh;
+    object-fit: contain;
+    cursor: pointer;
+    margin-bottom: -12%;
+    background: none;
+    opacity: 0.2;
+}
+
+.wrap_password img:hover{
+    height: 5.5vh;
+    cursor: pointer;
+    transition: 0.3s;
+}
+

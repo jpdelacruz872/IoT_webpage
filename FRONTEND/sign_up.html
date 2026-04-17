@@ -36,29 +36,56 @@
         <section id="welcome_section">
                 Building the future of industry, today.
         </section>
-        <div id="login_container">
+        <div id="sign_up_container">
             <img id="welcome_img" src="FrED_nano_CAD.png" alt="FrED nano CAD">
-            <div id="login">
-                <header>
-                    <h1>Enter your email or username</h1>
-                </header>
-                <input type="text">
-                <header>
-                    <h1>Enter your password</h1>
-                </header>
+            <div id="sign_up">
+                <div id="identification">
+                    <div id="name_container">
+                        <h1>
+                            Enter your name
+                        </h1>
+                        <input id="name_input" type="text" placeholder="Required field**">
+                    </div>
+                    <div id="last_name_container">
+                        <h1>
+                            Enter your last name
+                        </h1>
+                        <input id="last_name_input" type="text" placeholder="Required field**">
+                    </div>
+                </div>
+                <h1>
+                    Enter a username
+                </h1>
+                <input type="text" placeholder="Required field**">
+                <h1>
+                    Enter your email
+                </h1>
+                <input type="email" placeholder="Required field**">
+                <h1>
+                        Enter your password
+                </h1>
                 <div class="wrap_password">
                     <input id="input_pass" type="password" placeholder="Required field**">
                     <span class="see_img" id="show_pass" title="Show/Hide password">
                         <img src="closed_eye.png" alt="show password">
                     </span>
                 </div>
+                <h1>
+                    Confirm your password
+                </h1>
+                <div class="wrap_password">
+                    <input id="input_pass_conf" type="password" placeholder="Required field**">
+                    <span class="see_img" id="show_confirm_pass" title="Show/Hide password">
+                        <img src="closed_eye.png" alt="show password">
+                    </span>
+                </div>
                 <button>
-                    LOG IN
+                    SIGN UP
                 </button>
-                <div id="sec_sign_up">
-                    <p>Don't have an account?</p>
-                    <button id="sign_up_btn">
-                        Sign up
+                <div id="sec_login">
+                    <p>Already have an account?</p>
+                    <button id="sec_login_btn">
+                        Log in
                     </button>
 
                 </div>
