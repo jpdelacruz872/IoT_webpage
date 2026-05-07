@@ -28,6 +28,66 @@
             <img src="TEC_logo.png" alt="Tec de Monterrey logo">
         </nav>
     </div>
+    <div id="my_account_container">
+        <div id="profile_summarize">
+            <img src="default_user.svg">
+            <h1> YOUR NAME </h1>
+            <h2> YOUR ROLE </h2>
+            <h3> YOUR ORGANIZATION </h3>
+            <button> EDIT YOUR PROFILE </button>
+        </div>
+        <div id="profile_information">
+            <section id="account_information">
+                <h1>Account Information</h1>
+                <hr>
+                <strong id="account_email">Email</strong>
+                <p>your_email@email.com<p>
+                <hr>
+                <strong>Role</strong>
+                <p>Your Role</p>
+                <hr>
+                <strong>Institution</strong>
+                <p>Your Institution</p>
+            </section>
+            <section id="preferences">
+                <h1>Preferences</h1>
+                <hr>
+                <div class="account_button">
+                    <div class="account_button_information">
+                        <strong>Email Notifications</strong>
+                        <p>Receive updates about every project</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <hr>
+                <div class="account_button">
+                    <div class="account_button_information">
+                        <strong>Dark Mode</strong>
+                        <p>Enable or desable dark theme</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </section>
+            <section id="security">
+                <h1>Security</h1>
+                <hr>
+                <div class="account_button">
+                    <div class="account_button_information">
+                        <strong>Change Password</strong>
+                        <p>Update yout account password</p>
+                    </div>
+                    <button id="change_password_btn">Change</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
