@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FrED Factory</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <div class="shape shape-circle-1"></div>
@@ -15,7 +15,7 @@
     <div class="menu">
         <div class="logo">
             <button id="logo_btn">
-                <img src="fred_logo.png" alt="FrED Factory logo">
+                <img src="/static/fred_logo.png" alt="FrED Factory logo">
             </button>
             <button id="name_btn">FrED Factory</button>
         </div>
@@ -25,7 +25,7 @@
             <button id="calendar_btn">CALENDAR</button>
             <button id="account_btn">ACCOUNT</button>
             <button id="login_btn">LOGIN</button>
-            <img src="TEC_logo.png" alt="Tec de Monterrey logo">
+            <img src="/static/TEC_logo.png" alt="Tec de Monterrey logo">
         </nav>
     </div>
 
@@ -37,9 +37,9 @@
                 Building the future of industry, today.
         </section>
         <div id="sign_up_container">
-            <img id="welcome_img" src="FrED_nano_CAD.png" alt="FrED nano CAD">
+            <img id="welcome_img" src="/static/FrED_nano_CAD.png" alt="FrED nano CAD">
             <div id="sign_up">
-                <div id="identification">
+                <div class="identification">
                     <div id="name_container">
                         <h1>
                             Enter your name
@@ -53,21 +53,35 @@
                         <input id="last_name_input" type="text" placeholder="Required field**">
                     </div>
                 </div>
+                <div class="identification">
+                    <div>
+                        <h1>
+                            Enter your organization
+                        </h1>
+                        <input id="organization_input" type="text" placeholder="Required field**">
+                    </div>
+                    <div>
+                        <h1>
+                            Enter your phone number
+                        </h1>
+                        <input id="phone_input" type="tel">
+                    </div>
+                </div>
                 <h1>
                     Enter a username
                 </h1>
-                <input type="text" placeholder="Required field**">
+                <input id="user_name_input" type="text" placeholder="Required field**">
                 <h1>
                     Enter your email
                 </h1>
-                <input type="email" placeholder="Required field**">
+                <input id="sign_up_email" type="email" placeholder="Required field**">
                 <h1>
                         Enter your password
                 </h1>
                 <div class="wrap_password">
                     <input id="input_pass" type="password" placeholder="Required field**">
                     <span class="see_img" id="show_pass" title="Show/Hide password">
-                        <img src="closed_eye.png" alt="show password">
+                        <img src="/static/closed_eye.png" alt="show password">
                     </span>
                 </div>
                 <h1>
@@ -76,10 +90,10 @@
                 <div class="wrap_password">
                     <input id="input_pass_conf" type="password" placeholder="Required field**">
                     <span class="see_img" id="show_confirm_pass" title="Show/Hide password">
-                        <img src="closed_eye.png" alt="show password">
+                        <img src="/static/closed_eye.png" alt="show password">
                     </span>
                 </div>
-                <button>
+                <button id="submit_sign_up">
                     SIGN UP
                 </button>
                 <div id="sec_login">
@@ -92,7 +106,7 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
     
 </body>
 </html>

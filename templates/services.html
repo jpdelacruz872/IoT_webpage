@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <div class="shape shape-circle-1"></div>
     <div class="shape shape-circle-2"></div>
     <div class="shape shape-circle-3"></div>
     <div class="shape shape-rectangle-1"></div>
+
     <div class="menu">
         <div class="logo">
             <button id="logo_btn">
-                <img src="fred_logo.png" alt="FrED Factory logo">
+                <img src="/static/fred_logo.png" alt="FrED Factory logo">
             </button>
             <button id="name_btn">FrED Factory</button>
         </div>
@@ -24,25 +25,9 @@
             <button id="calendar_btn">CALENDAR</button>
             <button id="account_btn">ACCOUNT</button>
             <button id="login_btn">LOGIN</button>
-            <img src="TEC_logo.png" alt="Tec de Monterrey logo">
+            <img src="/static/TEC_logo.png" alt="Tec de Monterrey logo">
         </nav>
     </div>
-
-    <div id="calendar_container">
-        <iframe 
-        src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FMonterrey&src=ZnJlZGZhY3RvcnkudGVjbXR5QGdtYWlsLmNvbQ&color=%23039be5"" 
-        style="border:solid 10px #F0F4F8; border-radius: 20px; box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);" 
-        width="1400" 
-        height="700" 
-        frameborder="100" 
-        scrolling="no">
-        </iframe>
-        <div id="upcoming_events_title">
-            <h1>Upcoming events</h1>
-        </div>
-        <div id="upcoming_events_items">
-        </div>
-    </div>
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>
