@@ -96,6 +96,35 @@ async function load_next_events() {
     }
 }
 
+async function load_papers(){
+    try {
+        const response = await fetch('/recent_papers');
+        const data = await response.json();
+        const container = document.getElementById('papers');
+
+        if(!container) return;
+
+        if(data.papers && data.papers.length > 0) {
+            container.innerHTML = '';
+
+            data.papers.forEach(paper => {
+                const HTML = `
+                <div class="papers_container">
+                    <h3>${paper.title} <span>(${paper.date})</span></h3>
+                    <p>${paper.abstract}</p>
+                    <a href="${paper.link}" class="paper_link" target="_blank">Read Paper →</a>
+                </div>
+                `;
+                container.innerHTML += HTML;
+            });
+        } else {
+            container.innerHTML = '<p>No papers found.</p>';
+        }
+    } catch (error) {
+        console.error("Error loading papers:", error);
+    }
+}
+
 const home_btn = document.getElementById('home_btn');
 const services_btn = document.getElementById('services_btn');
 const calendar_btn = document.getElementById('calendar_btn');
@@ -147,7 +176,7 @@ login_btn.addEventListener('click', () => goto('/log_in'));
 logo1_btn.addEventListener('click', () => goto('/'));
 logo2_btn.addEventListener('click', () => goto('/'));
 if (sec_login_btn) {
-    sec_login_btn.addEventListener('click', () => goto('/'));
+    sec_login_btn.addEventListener('click', () => goto('/log_in'));
 }
 
 if (sign_up_btn) {
@@ -258,4 +287,8 @@ if (submit_log_in) {
 
 if (window.location.pathname === '/calendar') {
     load_next_events();
+}
+
+if (window.location.pathname === '/') {
+    load_papers();
 }

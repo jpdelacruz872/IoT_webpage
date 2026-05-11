@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 from supabase import create_client, Client
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timezone
-
 load_dotenv()
 
 app = Flask(__name__)
@@ -14,6 +13,8 @@ url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 app.secret_key = os.environ["SERVER_KEY"]
 google_calendar_key = os.environ.get("GOOGLE_CALENDAR_KEY")
+google_sheets_key = os.environ.get("GOOGLE_SHEETS_KEY")
+sheets_id = os.environ.get("SHEETS_ID")
 
 supabase: Client = create_client(url, key)
 
@@ -143,5 +144,48 @@ def get_next_events():
     
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
+@app.route('/recent_papers')
+def get_recent_papers():
+    range = 'Papers!A1:D1015'
+    url = f"https://sheets.googleapis.com/v4/spreadsheets/{sheets_id}/values/{range}?key={google_sheets_key}"
+    try:
+        response = requests.get(url)
+        data = response.json()
+
+        if (response.status_code != 200):
+            print('GOOGLE API ERROR: ', data)
+            return jsonify({'error': 'Google API error '}), 400
+        
+        values = data.get('values', [])
+
+        papers = []
+        for row in values:
+            if len(row) == 4:
+                papers.append({
+                    'title': row[0],
+                    'abstract': row[1],
+                    'link': row[2],
+                    'date': row[3]
+                })
+        
+        def parse_date(date):
+            try:
+                return datetime.strptime(date, "%d/%m/%Y")
+            
+            except ValueError:
+                return datetime.min
+        
+        papers.sort(key=lambda p: parse_date(p['date']), reverse=True)
+
+        recent_papers = papers[:6]
+
+        return jsonify({'papers': recent_papers}), 200
+    
+    except Exception as e:
+        print(f'Error obtaining papers: {e}')
+        return jsonify({'error': 'Could not obtain papers'}), 500
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=1717, debug=True)

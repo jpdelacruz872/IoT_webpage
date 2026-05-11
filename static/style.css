@@ -792,6 +792,7 @@
     display: flex;
     flex-direction: column;
     font-family: 'Lausanne', sans-serif;
+    margin-bottom: 6vh;
 }
 
 #landing_about h2{
@@ -819,7 +820,7 @@
 }
 
 .fred_info {
-    background-color: #F0F4F8;
+    background-color: #e4e9f4;
     width: 45%;
     border-radius: 20px;
     box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.3);
@@ -842,4 +843,72 @@
     color: var(--text-secondary);
     font-weight: lighter;
     line-height: 2;
+}
+
+#landing_papers {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lausanne', sans-serif;
+    background-color: #e4e9f4;
+    padding-top: 7vh;
+}
+
+#landing_papers h2{
+    margin-left: 5vw;
+    color: var(--blue-1);
+    font-size: 4vh;
+}
+
+#landing_papers > p {
+    margin-left: 5vw;
+    margin-top: 0;
+    color: var(--text-secondary);
+    font-size: 2.5vh; 
+    margin-bottom: 3vh;
+}
+
+#side_info {
+    font-family: 'Lausanne', sans-serif;
+    margin-top: 5vh;
+}
+
+#papers {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90vw;
+    align-self: center;
+    margin-bottom: 5vh;
+    justify-content: space-between;
+    gap: 5vh;
+}
+
+.papers_container {
+    font-family: 'Lausanne', sans-serif;
+    background-color: #F0F4F8;
+    border-radius: 20px;
+    width: 47.5%;
+    border: 3px solid #c2d2de86;
+}
+
+.papers_container h3{
+    margin-left: 3vw;
+    color: var(--blue-1);
+    font-size: 2.5vh;
+    margin-top: 5vh;
+}
+
+.papers_container p{
+    color: var(--text-secondary);
+    margin-left: 3vw;
+    text-align: justify;
+    margin-right: 3vw;
+}
+
+.paper_link {
+    display: block;
+    margin-left: 3vw;
+    color: var(--blue-2);
+    text-decoration: none;
+    font-weight: bold;
+    margin-bottom: 4vh;
 }
