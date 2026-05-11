@@ -13,6 +13,89 @@ function change_pass_visibility(input, img) {
     }
 }
 
+async function checkSecuritySession() {
+    try {
+        const response = await fetch('/get_session');
+        const data = await response.json();
+        const user = data.user;
+
+        if (user) {
+            if (account_btn) account_btn.style.display = 'inline-block';
+            if (login_btn) login_btn.style.display = 'none';
+        } else {
+            if (account_btn) account_btn.style.display = 'none';
+            if (login_btn) login_btn.style.display = 'inline-block';
+        }
+        if (window.location.pathname === '/account') {
+            if (user) {
+                const display_name = document.getElementById('display_name');
+                const display_organization = document.getElementById('display_organization');
+                const display_email = document.getElementById('display_email');
+                const display_institution = document.getElementById('display_institution');
+
+                if (display_name) {
+                    display_name.innerText = user.first_name + ' ' + user.last_name;
+                }
+
+                if (display_organization) {
+                    display_organization.innerText = user.school_name;
+                }
+
+                if (display_email) {
+                    display_email.innerText = user.email;
+                }
+
+                if (display_institution) {
+                    display_institution.innerText = user.school_name;
+                }
+            } else {
+                goto('/log_in');
+            }
+        }
+    } catch (error) {
+        console.error('Error verifying secure session: ', error)
+    }
+}
+
+async function load_next_events() {
+    const eventsContainer = document.getElementById('upcoming_events_items');
+
+    eventsContainer.innerHTML = '<p id="loading_events">Loading upcoming events...</p>';
+
+    try {
+        const response = await fetch('/calendar/upcoming_events');
+        const events = await response.json();
+
+        if (events.length === 0) {
+            eventsContainer.innerHTML = '<p id="no_events">More events soon...</p';
+            return;
+        }
+
+        eventsContainer.innerHTML = '';
+        events.forEach(event => {
+            const title = event.summary;
+            const start = event.start.dateTime || event.start.date;
+            const dateObj = new Date(start);
+
+            const dateString = dateObj.toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+            const timeString = event.start.dateTime ? dateObj.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit'}) : 'All Day';
+
+            const eventCard = document.createElement('div');
+            eventCard.style.padding = '15px 20px';
+
+            eventCard.innerHTML = `
+                <h3 class="event_titles">${title}</h3>
+                <p class="event_descriptions"> ${dateString} &nbsp; ${timeString}</p>
+                <hr class="hr_events">
+            `;
+            eventsContainer.appendChild(eventCard);
+        });
+    } catch (error) {
+        console.error('Error loading events: ', error);
+        eventsContainer.innerHTML = '<p style="margin-left: 20px; color: red;">Could not load events.</p>';
+    }
+}
+
 const home_btn = document.getElementById('home_btn');
 const services_btn = document.getElementById('services_btn');
 const calendar_btn = document.getElementById('calendar_btn');
@@ -35,6 +118,8 @@ const submit_sign_up = document.getElementById('submit_sign_up');
 const submit_log_in = document.getElementById('submit_log_in');
 
 const log_in_status = localStorage.getItem('current_user');
+
+checkSecuritySession();
 
 if (log_in_status) {
 
@@ -70,9 +155,24 @@ if (sign_up_btn) {
 }
 
 if (log_out_btn) {
-    log_out_btn.addEventListener('click', function () {
-        localStorage.removeItem('current_user');
-        goto('/log_in');
+    log_out_btn.addEventListener('click', async () => {
+        try {
+            const response = await fetch('/log_out', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                window.location.href = '/log_in';
+            } else {
+                console.error('Failed to log out');
+            }
+
+        } catch (error) {
+            console.error('Error sending log out request: ', error);
+        }
     });
 }
 
@@ -147,11 +247,6 @@ if (submit_log_in) {
             });
 
             if (response.ok) {
-                const result = await response.json();
-                const user_data = result.user;
-
-                localStorage.setItem('current_user', JSON.stringify(user_data));
-
                 goto('/');
             }
 
@@ -161,32 +256,6 @@ if (submit_log_in) {
     });
 }
 
-if (window.location.pathname === '/account') {
-    const user_data = localStorage.getItem('current_user');
-
-    if (user_data) {
-        const user = JSON.parse(user_data);
-
-        const display_name = document.getElementById('display_name');
-        const display_role = document.getElementById('display_role');
-        const display_organization = document.getElementById('display_organization');
-        const display_email = document.getElementById('display_email');
-        const display_institution = document.getElementById('display_institution');
-
-        if (display_name) {
-            display_name.innerText = user.first_name + ' ' + user.last_name;
-        }
-
-        if (display_organization) {
-            display_organization.innerText = user.school_name;
-        }
-
-        if (display_email) {
-            display_email.innerText = user.email;
-        }
-
-        if (display_institution) {
-            display_institution.innerText = user.school_name;
-        }
-    }
+if (window.location.pathname === '/calendar') {
+    load_next_events();
 }
