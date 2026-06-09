@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: iot-webpage
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: SERVER_KEY
+        sync: false
+      - key: GOOGLE_CALENDAR_KEY
+        sync: false
+      - key: GOOGLE_SHEETS_KEY
+        sync: false
+      - key: SHEETS_ID
+        sync: false

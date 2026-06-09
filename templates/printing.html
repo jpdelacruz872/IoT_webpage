@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Printing | FrED Factory</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/printing.css">
+</head>
+<body>
+    <div class="shape shape-circle-1"></div>
+    <div class="shape shape-circle-2"></div>
+    <div class="shape shape-circle-3"></div>
+    <div class="shape shape-rectangle-1"></div>
+
+    <div class="menu">
+        <div class="logo">
+            <button id="logo_btn">
+                <img src="/static/fred_logo.png" alt="FrED Factory logo">
+            </button>
+            <button id="name_btn">FrED Factory</button>
+        </div>
+        <nav class="menu_buttons">
+            <button id="home_btn">HOME</button>
+            <button id="services_btn">SERVICES</button>
+            <button id="calendar_btn">CALENDAR</button>
+            <button id="account_btn">ACCOUNT</button>
+            <button id="login_btn">LOGIN</button>
+            <img src="/static/TEC_logo.png" alt="Tec de Monterrey logo">
+        </nav>
+    </div>
+
+    <div id="printing_container">
+        <header id="printing_header">
+            <h1>3D Printing</h1>
+            <p>Live telemetry from every connected printer in the lab.</p>
+        </header>
+
+        <section id="connected_devices_section">
+            <h2>Connected devices</h2>
+            <div id="printers_grid">
+                <p id="printers_loading">Loading printers...</p>
+            </div>
+        </section>
+
+        <section id="print_queue_section">
+            <h2>Print queue</h2>
+            <p class="section_subtitle">Sign up for the next available printer slot.</p>
+
+            <form id="queue_form">
+                <div class="queue_form_row">
+                    <label>
+                        Your name
+                        <input id="queue_user" type="text" placeholder="e.g. Juan Pablo" required>
+                    </label>
+                    <label>
+                        Job name
+                        <input id="queue_job" type="text" placeholder="e.g. FrED housing v2" required>
+                    </label>
+                    <label>
+                        Preferred printer
+                        <select id="queue_printer">
+                            <option value="">Any available</option>
+                        </select>
+                    </label>
+                    <label>
+                        Est. duration (min)
+                        <input id="queue_duration" type="number" min="1" max="6000" placeholder="60">
+                    </label>
+                </div>
+                <button type="submit" id="queue_submit_btn">Sign in queue</button>
+                <span id="queue_form_msg"></span>
+            </form>
+
+            <ol id="queue_list">
+                <li id="queue_loading">Loading queue...</li>
+            </ol>
+        </section>
+    </div>
+
+    <script src="/static/script.js"></script>
+    <script src="/static/printing.js"></script>
+</body>
+</html>

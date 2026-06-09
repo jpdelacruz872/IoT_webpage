@@ -101,6 +101,74 @@ def sign_up_info():
 def services():
     return render_template('services.html')
 
+@app.route('/printing')
+def printing():
+    return render_template('printing.html')
+
+@app.route('/printing/queue', methods=['GET'])
+def printing_queue_list():
+    table = os.environ.get('PRINT_QUEUE_TABLE', 'print_queue')
+    try:
+        result = (supabase.table(table)
+                  .select('*')
+                  .eq('status', 'queued')
+                  .order('created_at', desc=False)
+                  .execute())
+        return jsonify(result.data or []), 200
+    except Exception as e:
+        print(f"[printing_queue_list] ERROR: {type(e).__name__}: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/printing/queue', methods=['POST'])
+def printing_queue_add():
+    data = request.get_json(silent=True) or {}
+    user_name = (data.get('user_name') or '').strip()
+    job_name = (data.get('job_name') or '').strip()
+    printer = data.get('printer') or None
+    duration_min = data.get('duration_min')
+    if not user_name or not job_name:
+        return jsonify({'error': 'user_name and job_name required'}), 400
+    table = os.environ.get('PRINT_QUEUE_TABLE', 'print_queue')
+    try:
+        row = {
+            'user_name': user_name,
+            'job_name': job_name,
+            'printer': printer,
+            'status': 'queued',
+        }
+        if duration_min is not None:
+            row['duration_min'] = int(duration_min)
+        result = supabase.table(table).insert(row).execute()
+        return jsonify(result.data[0] if result.data else {}), 201
+    except Exception as e:
+        print(f"[printing_queue_add] ERROR: {type(e).__name__}: {e}")
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/inventory')
+def inventory():
+    return render_template(
+        'inventory.html',
+        supabase_url=url,
+        supabase_anon_key=key,
+        inventory_table=os.environ.get('INVENTORY_TABLE', 'Inventory'),
+        latency_table=os.environ.get('LATENCY_TABLE', 'latency_test'),
+    )
+
+@app.route('/inventory/latency_ping', methods=['POST'])
+def inventory_latency_ping():
+    data = request.get_json(silent=True) or {}
+    trial_id = data.get('trial_id')
+    if not trial_id:
+        return jsonify({'error': 'trial_id required'}), 400
+    table = os.environ.get('LATENCY_TABLE', 'latency_test')
+    try:
+        result = supabase.table(table).insert({'trial_id': trial_id}).execute()
+        print(f"[latency_ping] inserted into {table}: {result.data}")
+        return jsonify({'trial_id': trial_id}), 200
+    except Exception as e:
+        print(f"[latency_ping] ERROR inserting into {table!r}: {type(e).__name__}: {e}")
+        return jsonify({'error': f"{type(e).__name__}: {e}", 'table': table}), 500
+
 @app.route('/calendar')
 def calendar():
     return render_template('calendar.html')

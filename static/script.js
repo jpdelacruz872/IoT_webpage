@@ -179,6 +179,13 @@ if (sec_login_btn) {
     sec_login_btn.addEventListener('click', () => goto('/log_in'));
 }
 
+document.querySelectorAll('.service_card_btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-target');
+        if (target) goto(target);
+    });
+});
+
 if (sign_up_btn) {
     sign_up_btn.addEventListener('click', () => goto('/sign_up'));
 }

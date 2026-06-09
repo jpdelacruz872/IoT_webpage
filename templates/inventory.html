@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory | FrED Factory</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/inventory.css">
+</head>
+<body>
+    <div class="shape shape-circle-1"></div>
+    <div class="shape shape-circle-2"></div>
+    <div class="shape shape-circle-3"></div>
+    <div class="shape shape-rectangle-1"></div>
+
+    <div class="menu">
+        <div class="logo">
+            <button id="logo_btn">
+                <img src="/static/fred_logo.png" alt="FrED Factory logo">
+            </button>
+            <button id="name_btn">FrED Factory</button>
+        </div>
+        <nav class="menu_buttons">
+            <button id="home_btn">HOME</button>
+            <button id="services_btn">SERVICES</button>
+            <button id="calendar_btn">CALENDAR</button>
+            <button id="account_btn">ACCOUNT</button>
+            <button id="login_btn">LOGIN</button>
+            <img src="/static/TEC_logo.png" alt="Tec de Monterrey logo">
+        </nav>
+    </div>
+
+    <div id="inventory_container">
+        <header id="inventory_header">
+            <h1>Inventory Tracking</h1>
+            <p>Live stock levels of every tracked component in the FrED Factory.</p>
+            <div id="inventory_realtime_status">
+                <span class="rt_dot"></span>
+                <span id="rt_label">Connecting to real-time channel...</span>
+            </div>
+        </header>
+
+        <section id="inventory_table_section">
+            <table id="inventory_table">
+                <thead>
+                    <tr>
+                        <th>Component</th>
+                        <th>Quantity</th>
+                        <th>Threshold</th>
+                        <th>Status</th>
+                        <th>Last updated</th>
+                    </tr>
+                </thead>
+                <tbody id="inventory_tbody">
+                    <tr><td colspan="5" id="inventory_loading">Loading inventory...</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="latency_section">
+            <h2>Real-time propagation latency</h2>
+            <p>Measure the time interim between a database change and its reflection on this dashboard.</p>
+            <div id="latency_controls">
+                <label>
+                    Trials:
+                    <input type="number" id="latency_trials" min="1" max="200" value="20">
+                </label>
+                <button id="run_latency_btn">Run latency test</button>
+            </div>
+            <div id="latency_results">
+                <div class="latency_metric">
+                    <span class="latency_metric_label">N</span>
+                    <span class="latency_metric_value" id="latency_n">—</span>
+                </div>
+                <div class="latency_metric">
+                    <span class="latency_metric_label">Mean</span>
+                    <span class="latency_metric_value" id="latency_mean">—</span>
+                </div>
+                <div class="latency_metric">
+                    <span class="latency_metric_label">Min</span>
+                    <span class="latency_metric_value" id="latency_min">—</span>
+                </div>
+                <div class="latency_metric">
+                    <span class="latency_metric_label">Max</span>
+                    <span class="latency_metric_value" id="latency_max">—</span>
+                </div>
+            </div>
+            <pre id="latency_log"></pre>
+        </section>
+    </div>
+
+    <script>
+        window.SUPABASE_URL = "{{ supabase_url }}";
+        window.SUPABASE_ANON_KEY = "{{ supabase_anon_key }}";
+        window.INVENTORY_TABLE = "{{ inventory_table }}";
+        window.LATENCY_TABLE = "{{ latency_table }}";
+    </script>
+    <script src="/static/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/static/inventory.js"></script>
+</body>
+</html>

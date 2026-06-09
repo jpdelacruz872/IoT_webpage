@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Services | FrED Factory</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -26,6 +26,40 @@
             <button id="login_btn">LOGIN</button>
             <img src="/static/TEC_logo.png" alt="Tec de Monterrey logo">
         </nav>
+    </div>
+    <div id="services_container">
+        <header id="services_header">
+            <h1>Services</h1>
+            <p>Centralized tools to operate and monitor the FrED Factory in real time.</p>
+        </header>
+        <div id="services_grid">
+            <article class="service_card">
+                <div class="service_card_accent" style="background-color: var(--blue-2);"></div>
+                <div class="service_card_body">
+                    <h2>3D Printing</h2>
+                    <p>Live telemetry, job progress and availability for every connected printer in the lab.</p>
+                    <ul class="service_card_features">
+                        <li>Real-time printer status</li>
+                        <li>Active job progress</li>
+                        <li>Per-printer availability</li>
+                    </ul>
+                    <button class="service_card_btn" data-target="/printing">Open module</button>
+                </div>
+            </article>
+            <article class="service_card">
+                <div class="service_card_accent" style="background-color: var(--green-1);"></div>
+                <div class="service_card_body">
+                    <h2>Inventory Tracking</h2>
+                    <p>Consult component stock, record requests and returns, and spot low-stock items at a glance.</p>
+                    <ul class="service_card_features">
+                        <li>Live stock levels</li>
+                        <li>Low-stock indicators</li>
+                        <li>Real-time propagation metrics</li>
+                    </ul>
+                    <button class="service_card_btn" data-target="/inventory">Open module</button>
+                </div>
+            </article>
+        </div>
     </div>
     <script src="/static/script.js"></script>
 </body>
